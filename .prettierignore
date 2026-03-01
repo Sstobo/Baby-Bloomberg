@@ -1,0 +1,40 @@
+# Build outputs
+.nitro/
+.output/
+dist/
+build/
+
+# TanStack generated
+.tanstack/
+routeTree.gen.ts
+
+# Convex generated
+convex/_generated/
+convex/README.md
+
+# Dependencies
+node_modules/
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Config files (shouldn't be formatted)
+.prettierrc
+
+# Public assets
+**/public/
+
+# Coverage
+coverage/
+
+# Environment
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# Planning docs
+.planning/
