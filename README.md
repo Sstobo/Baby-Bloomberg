@@ -24,7 +24,7 @@ A self-hostable financial terminal with real-time market data, interactive chart
 ### Prerequisites
 
 - **[Node.js](https://nodejs.org/)** v20+ — download from [nodejs.org](https://nodejs.org/)
-- **[pnpm](https://pnpm.io/)** v9+ — install with `npm install -g pnpm`
+- A package manager: **[npm](https://docs.npmjs.com/)** (included with Node), **[pnpm](https://pnpm.io/)**, or **[bun](https://bun.sh/)**
 - **[Convex](https://convex.dev/)** account — free at [convex.dev](https://convex.dev/)
 
 ### Option A: Interactive Setup Script
@@ -52,7 +52,7 @@ If you prefer to do it yourself, follow the steps below.
 ```bash
 git clone https://github.com/your-username/baby-bloomberg.git
 cd baby-bloomberg
-pnpm install
+npm install    # or: pnpm install / bun install
 ```
 
 ### 2. Set up Convex
@@ -156,7 +156,7 @@ npx convex env set GOOGLE_GENERATIVE_AI_API_KEY your_key_here
 ### 5. Start the app
 
 ```bash
-pnpm dev
+npm run dev    # or: pnpm dev / bun dev
 ```
 
 Open **[http://localhost:3000](http://localhost:3000)** — it redirects to the terminal view. Type a stock ticker (e.g. `AAPL`) in the command bar to get started.
@@ -208,13 +208,15 @@ convex/
 ## Development Commands
 
 ```bash
-pnpm dev          # Full-stack (Convex + Vite)
-pnpm dev:web      # Frontend only
-pnpm dev:convex   # Backend only
-pnpm build        # Production build
-pnpm lint         # TypeScript + ESLint
-pnpm format       # Prettier
+npm run dev          # Full-stack (Convex + Vite)
+npm run dev:web      # Frontend only
+npm run dev:convex   # Backend only
+npm run build        # Production build
+npm run lint         # TypeScript + ESLint
+npm run format       # Prettier
 ```
+
+> Using **pnpm**? Replace `npm run` with `pnpm`. Using **bun**? Replace `npm run` with `bun`.
 
 ## License
 

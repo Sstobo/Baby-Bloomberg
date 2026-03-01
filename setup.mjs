@@ -10,6 +10,24 @@ const YELLOW = "\x1b[33m";
 const CYAN = "\x1b[36m";
 const RESET = "\x1b[0m";
 
+function detectPackageManager() {
+  const userAgent = process.env.npm_config_user_agent || "";
+  if (userAgent.startsWith("bun")) return "bun";
+  if (userAgent.startsWith("pnpm")) return "pnpm";
+  if (userAgent.startsWith("npm")) return "npm";
+
+  for (const pm of ["bun", "pnpm", "npm"]) {
+    try {
+      execSync(`${pm} --version`, { stdio: "ignore" });
+      return pm;
+    } catch {}
+  }
+  return "npm";
+}
+
+const pm = detectPackageManager();
+const runCmd = pm === "npm" ? "npm run" : pm;
+
 console.log("");
 console.log(`${BOLD}  Baby Bloomberg Setup${RESET}`);
 console.log(`${DIM}  ─────────────────────${RESET}`);
@@ -27,23 +45,16 @@ if (nodeMajor < 20) {
   process.exit(1);
 }
 console.log(`  ${GREEN}\u2713${RESET} Node.js v${nodeVersion}`);
-
-try {
-  execSync("pnpm --version", { stdio: "ignore" });
-  console.log(`  ${GREEN}\u2713${RESET} pnpm found`);
-} catch {
-  console.log(`  ${YELLOW}\u2717${RESET} pnpm is not installed. Install with: npm install -g pnpm`);
-  process.exit(1);
-}
+console.log(`  ${GREEN}\u2713${RESET} Using ${pm}`);
 
 console.log("");
 
 // ── Install dependencies ─────────────────────────────────────────────
 
 if (!existsSync("node_modules")) {
-  console.log(`${BOLD}  Installing dependencies...${RESET}`);
+  console.log(`${BOLD}  Installing dependencies with ${pm}...${RESET}`);
   console.log("");
-  execSync("pnpm install", { stdio: "inherit" });
+  execSync(`${pm} install`, { stdio: "inherit" });
   console.log("");
 } else {
   console.log(`  ${GREEN}\u2713${RESET} Dependencies already installed`);
@@ -164,7 +175,7 @@ console.log(`  ${GREEN}Setup complete!${RESET}`);
 console.log("");
 console.log(`  Start the app with:`);
 console.log("");
-console.log(`    ${CYAN}pnpm dev${RESET}`);
+console.log(`    ${CYAN}${runCmd} dev${RESET}`);
 console.log("");
 console.log(`  Then open ${CYAN}http://localhost:3000${RESET}`);
 console.log("");
