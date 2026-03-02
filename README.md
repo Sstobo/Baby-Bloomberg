@@ -2,7 +2,8 @@
 
 A self-hostable financial terminal with real-time market data, interactive charts, AI-powered analysis, and SEC filing research. Built with TanStack Start and Convex.
 
-<!-- ![Screenshot](screenshot.png) -->
+![Screenshot 1](./public/Screenshot%202026-03-01%20at%2011.23.02%E2%80%AFAM.png)
+![Screenshot 2](./public/Screenshot%202026-03-01%20at%2011.23.13%E2%80%AFAM.png)
 
 ## Features
 
