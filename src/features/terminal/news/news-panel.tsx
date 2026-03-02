@@ -227,15 +227,19 @@ export function NewsPanel() {
                     )}
                     {hasAnalysis && (
                       <button
+                        type="button"
                         onClick={() => toggleExpanded(article._id)}
-                        className="shrink-0 flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[9px] font-medium text-[var(--terminal-amber)] transition-colors hover:bg-[var(--terminal-surface)]"
+                        className="shrink-0 inline-flex items-center gap-1 rounded border border-[var(--terminal-amber)]/50 bg-[var(--terminal-amber)]/15 px-2 py-1 text-[10px] font-semibold text-[var(--terminal-amber)] transition-colors hover:bg-[var(--terminal-amber)]/25"
+                        title={isExpanded ? 'Hide AI summary' : 'View AI summary'}
                       >
                         <Sparkles className="h-2.5 w-2.5" />
+                        <span className="hidden sm:inline">{isExpanded ? 'Hide Summary' : 'View Summary'}</span>
                         <ChevronDown className={`h-2.5 w-2.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                       </button>
                     )}
                     {!isAnalyzing && !hasAnalysis && (
                       <button
+                        type="button"
                         onClick={(e) => {
                           e.preventDefault()
                           analyze(article._id, {
@@ -244,10 +248,12 @@ export function NewsPanel() {
                             symbol: article.symbol,
                           })
                         }}
-                        className="shrink-0 rounded p-0.5 text-t-muted opacity-0 transition-all hover:text-[var(--terminal-amber)] group-hover:opacity-100"
-                        title="AI Analysis"
+                        className="shrink-0 inline-flex items-center gap-1 rounded border border-[var(--terminal-amber)] bg-[var(--terminal-amber)] px-2 py-1 text-[10px] font-bold tracking-wide text-[var(--terminal-bg)] transition-all hover:brightness-110"
+                        title="Generate AI summary"
                       >
                         <Sparkles className="h-3 w-3" />
+                        <span className="hidden sm:inline">Generate AI Summary</span>
+                        <span className="sm:hidden">AI Summary</span>
                       </button>
                     )}
                     <a
